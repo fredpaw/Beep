@@ -1,0 +1,16 @@
+.login-form__buttons {
+  padding:10px;
+  float:right;
+
+  div button:nth-of-type(1) {
+    margin-right: 10px;
+  }
+}
+
+ion-item ion-input{
+  border-bottom: solid 1px #888888;
+}
+
+ion-item ion-label {
+  color: #aaaaaa;
+}
