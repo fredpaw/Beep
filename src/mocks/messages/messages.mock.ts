@@ -1,10 +1,10 @@
-import { USER_LIST } from './../users/users.mock';
+import { Profile_LIST } from './../profiles/profiles.mock';
 import { Message } from './../../models/message/message';
 
-const userList = USER_LIST;
+const profileList = Profile_LIST;
 const messageList: Message[] = [];
 
-userList.forEach((user) => {
+profileList.forEach((user) => {
   messageList.push({user: user, date: new Date(), lastMessage: 'Hello'})
 });
 

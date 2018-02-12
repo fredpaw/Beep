@@ -1,30 +1,34 @@
-import { User } from './../../models/user/user';
+import { Profile } from './../../models/profile/profile';
 
-const userList: User [] = [
+const profileList: Profile [] = [
   {
     firstName: 'Paul',
     lastName: 'Halliday',
     avatar: 'assets/imgs/avatar.png',
-    email: 'paul@paul.com'
+    email: 'paul@paul.com',
+    dateOfBirth: new Date()
   },
   {
     firstName: 'John',
     lastName: 'Doe',
     avatar: 'assets/imgs/avatar.png',
-    email: 'john@doe.com'
+    email: 'john@doe.com',
+    dateOfBirth: new Date()
   },
   {
     firstName: 'Sarah',
     lastName: 'Smith',
     avatar: 'assets/imgs/avatar.png',
-    email: 'sarah@smith.com'
+    email: 'sarah@smith.com',
+    dateOfBirth: new Date()
   },
   {
     firstName: 'Roger',
     lastName: 'Reynolds',
     avatar: 'assets/imgs/avatar.png',
-    email: 'roger@reynolds.com'
+    email: 'roger@reynolds.com',
+    dateOfBirth: new Date()
   }
 ]
 
-export const USER_LIST = userList;
+export const Profile_LIST = profileList;

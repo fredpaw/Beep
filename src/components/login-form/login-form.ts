@@ -1,6 +1,7 @@
+import { AuthProvider } from './../../providers/auth/auth';
+import { LoginResponse } from './../../models/login/login';
 import { Account } from './../../models/account/account';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 /**
@@ -16,22 +17,21 @@ import { NavController } from 'ionic-angular';
 export class LoginFormComponent {
 
   account = {} as Account;
+  @Output() loginStatus: EventEmitter<LoginResponse>;
 
-  constructor(private navCtrl: NavController, private afAuth: AngularFireAuth) {
-    
+  constructor(
+    private navCtrl: NavController,
+    private auth: AuthProvider) {
+    this.loginStatus = new EventEmitter<LoginResponse>();
   }
 
   async login() {
-    try {
-      const result = await this.afAuth.auth.signInWithEmailAndPassword(this.account.email, this.account.password);
-      console.log(result);
-    } catch (e) {
-      console.log(e);
-    }
+    const result: LoginResponse = await this.auth.signInWithEmailAndPassword(this.account)
+    this.loginStatus.emit(result);
   }
 
-  navTo(page: string) {
-    page === 'TabsPage' ? this.navCtrl.setRoot(page) : this.navCtrl.push(page);
+  navToRegister() {
+    this.navCtrl.push('RegisterPage');
   }
 
 }
