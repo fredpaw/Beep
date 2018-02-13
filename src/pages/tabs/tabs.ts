@@ -1,5 +1,6 @@
+import { AuthProvider } from './../../providers/auth/auth';
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
 /**
  * Generated class for the TabsPage page.
@@ -19,7 +20,12 @@ export class TabsPage {
   tab2Root: string;
   tab3Root: string;
 
-  constructor() {
+  constructor(private auth: AuthProvider, private navCtrl: NavController) {
+    this.auth.getAuthenticatedUser().subscribe(auth => {
+      if(!auth) {
+        this.navCtrl.setRoot('LoginPage');
+      }
+    })
     this.tab1Root = 'InboxPage';
     this.tab2Root = 'ChannelsPage';
     this.tab3Root = 'ProfilePage';
