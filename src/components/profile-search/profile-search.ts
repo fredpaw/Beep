@@ -1,6 +1,6 @@
 import { Profile } from './../../models/profile/profile';
 import { DataProvider } from './../../providers/data/data';
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 /**
  * Generated class for the ProfileSearchComponent component.
@@ -16,8 +16,10 @@ export class ProfileSearchComponent {
 
   query: string;
   profileList: Profile[];
+  @Output() selectedProfile: EventEmitter<Profile>;
 
   constructor(private data: DataProvider) {
+    this.selectedProfile = new EventEmitter<Profile>();
   }
 
   searchUser(query: string) {
@@ -28,5 +30,9 @@ export class ProfileSearchComponent {
         this.profileList = profiles;
       });
     }
+  }
+
+  selectProfile(profile: Profile) {
+    this.selectedProfile.emit(profile);
   }
 }

@@ -12,6 +12,7 @@ import { MyApp } from './app.component';
 import { AuthProvider } from '../providers/auth/auth';
 import { DataProvider } from '../providers/data/data';
 import { FormsModule } from '@angular/forms';
+import { ChatProvider } from '../providers/chat/chat';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     DataProvider,
+    ChatProvider,
   ]
 })
 export class AppModule {}
