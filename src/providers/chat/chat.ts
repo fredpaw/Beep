@@ -1,4 +1,6 @@
-import { AngularFireDatabase } from 'angularfire2/database';
+import { ChannelMessage } from './../../models/channel/channel-message';
+import { Channel } from './../../models/channel/channel';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 
 /*
@@ -18,4 +20,15 @@ export class ChatProvider {
     this.db.list('/channel-names').push({name: channelName});
   }
 
+  getChannelListRef(): AngularFireList<Channel> {
+    return this.db.list('/channel-names');
+  }
+
+  getChannelChatRef(channelKey: string): AngularFireList<ChannelMessage> {
+    return this.db.list(`channels/${channelKey}`);
+  }
+
+  async sendChannelChatMessage(channelKey: string, message: ChannelMessage) {
+    await this.db.list(`channels/${channelKey}`).push(message);
+  }
 }

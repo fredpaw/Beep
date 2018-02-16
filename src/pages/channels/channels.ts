@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs/Observable';
+import { Channel } from './../../models/channel/channel';
 import { ChatProvider } from './../../providers/chat/chat';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
@@ -16,11 +18,27 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 })
 export class ChannelsPage {
 
+  channelList$: Observable<Channel[]>;
+
   constructor(
     private chat: ChatProvider,
     private alertCtrl: AlertController,
     public navCtrl: NavController,
     public navParams: NavParams) {
+  }
+
+  ionViewWillLoad() {
+    //get channels
+    this.getChannels();
+  }
+
+  getChannels() {
+    this.channelList$ = this.chat.getChannelListRef().snapshotChanges()
+      .map(results => {return results.map( result => {return {
+        name: result.payload.val().name,
+        $key: result.key
+        }})
+      });
   }
 
   addChannelDialog() {
@@ -42,5 +60,9 @@ export class ChannelsPage {
         }
       ]
     }).present();
+  }
+
+  selectChannel(channel: Channel) {
+    this.navCtrl.push('ChannelChatPage', {channel});
   }
 }

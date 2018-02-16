@@ -1,5 +1,4 @@
 import { Profile } from './../../models/profile/profile';
-import { AuthProvider } from './../../providers/auth/auth';
 import { DataProvider } from './../../providers/data/data';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { LoadingController, Loading } from 'ionic-angular';
@@ -22,8 +21,7 @@ export class ProfileViewComponent implements OnInit {
 
   constructor(
     private loading: LoadingController,
-    private data: DataProvider,
-    private auth: AuthProvider) {
+    private data: DataProvider) {
     this.loader = this.loading.create({
       content: 'Loading profile...'
     });

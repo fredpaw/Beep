@@ -1,7 +1,9 @@
-export interface Profile {
+
+export class Profile {
   firstName: string;
   lastName: string;
-  avatar: string;
+  avatar?: string;
   email: string;
   dateOfBirth: Date;
+  $key?: string;
 }
